@@ -7,6 +7,20 @@
 - 당진 AWS : 36.889361,126.617389 - stn_id==616
 
 ```r
+# 
+aws_te <- dbGetQuery(conn, "SELECT * FROM db_aws_te_tim
+                        WHERE db_aws_te_tim.stn_id IN (515, 634, 637, 616)
+                        AND db_aws_te_tim.tma > '2016-03-31 23:00:00.0'
+                        AND db_aws_te_tim.tma < '2020-04-01 00:00:00.0'")
+
+colnames(aws_te)=gsub("db_aws_te_tim.", "", colnames(aws_te), ignore.case = T)
+head(aws_te)
+
+write.csv(aws_te, "aws_te.csv", fileEncoding = "utf-8")
+
+
+
+
 # working code
 aws_wind <- dbGetQuery(conn, "SELECT * FROM db_aws_wind_tim
                         WHERE db_aws_wind_tim.stn_id IN (515, 634, 637, 616)
