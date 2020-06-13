@@ -6,59 +6,10 @@
 - 신평 AWS : 36.893750,126.805583 - stn_id==637
 - 당진 AWS : 36.889361,126.617389 - stn_id==616
 
-```r
-# 
-aws_te <- dbGetQuery(conn, "SELECT * FROM db_aws_te_tim
-                        WHERE db_aws_te_tim.stn_id IN (515, 634, 637, 616)
-                        AND db_aws_te_tim.tma > '2016-03-31 23:00:00.0'
-                        AND db_aws_te_tim.tma < '2020-04-01 00:00:00.0'")
-
-colnames(aws_te)=gsub("db_aws_te_tim.", "", colnames(aws_te), ignore.case = T)
-head(aws_te)
-
-write.csv(aws_te, "aws_te.csv", fileEncoding = "utf-8")
-
-
-
-
-# working code
-aws_wind <- dbGetQuery(conn, "SELECT * FROM db_aws_wind_tim
-                        WHERE db_aws_wind_tim.stn_id IN (515, 634, 637, 616)
-                        AND db_aws_wind_tim.tma > '2016-03-31 23:00:00.0'
-                        AND db_aws_wind_tim.tma < '2020-04-01 00:00:00.0'")
-
-colnames(aws_wind)=gsub("db_aws_ta_tim.", "", colnames(aws_wind), ignore.case = T)
-head(aws_wind)
-
-write.csv(aws_wind, "aws_wind.csv", fileEncoding = "utf-8")
-
-
-#  Get data : sea_bouy
-
-## stn_id == 22101
-## 2100123100,1996070100,덕적도,37.2361,126.0188
-
-sea_buoy <- dbGetQuery(conn, "SELECT * FROM db_sea_buoy_tim
-                        WHERE db_sea_buoy_tim.stn_id==22101
-                        AND db_sea_buoy_tim.tm > '2016-03-31 23:00:00.0'
-                        AND db_sea_buoy_tim.tm < '2020-04-01 00:00:00.0'")
-
-colnames(sea_buoy)=gsub("db_sea_buoy_tim.", "", colnames(sea_buoy), ignore.case = T)
-head(sea_buoy)
-
-write.csv(sea_buoy, "sea_buoy.csv", fileEncoding = "utf-8")
-
-
-#  Get data : sea_lb
-## stn_id == 955
-## 2100123100,2001120100,서수도,37.325,126.3933333,18,12A20000,2872037000
-sea_lb <- dbGetQuery(conn, "SELECT * FROM db_sea_lb_tim
-                        WHERE db_sea_lb_tim.stn_id==955
-                        AND db_sea_lb_tim.tm > '2016-03-31 23:00:00.0'
-                        AND db_sea_lb_tim.tm < '2020-04-01 00:00:00.0'")
-
-colnames(sea_lb)=gsub("db_sea_lb_tim.", "", colnames(sea_lb), ignore.case = T)
-head(sea_lb)
-
-write.csv(sea_lb, "sea_lb.csv", fileEncoding = "utf-8")
-```
+## 기상 데이터 활용 csv, 컬럼명
+- aws_prsr(기압) : avg_pa(평균 현지기압), avg_ps(평균 해면기압)
+- aws_rn(강수) : hr1_rn(1시간 강수량)
+- aws_ta(기온) : avg_ta(평균 기온)
+- aws_wind(바람) : avg_ws(평균 풍속), max_ws(최대 풍속), max_ws_wd(최대 풍속 풍향), max_ins_ws(최대 순간 풍속), max_ins_ws_wd(최대 순간 풍속 풍향)
+- sea_buoy(해상BUOY) : wd_n1(풍향 1), ws_n1(풍속 1), gust_ws_n1(돌풍 풍속 1), pa(현지 기압), hm(습도), ta(기온), max_wh(최대파고), avg_wh(평균파고)
+  - hive_manual 156p 바탕으로 추정
