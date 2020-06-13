@@ -20,4 +20,4 @@
   - hive_manual 156p 바탕으로 추정
 - sea_lb(해상 등표)
   - wd(풍향), ws(풍속), max_ins_wd(최대 순간 풍향), max_iws(최대 순간 풍속), ta(기온), ps(해면기압), hm(습도)
-  - hive_manual 바탕으로 
+  - hive_manual 바탕으로 추정
