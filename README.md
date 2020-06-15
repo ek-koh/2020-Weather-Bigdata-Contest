@@ -26,5 +26,5 @@
 ## LightGBM 성능 향상 idea
 - 재현율이 중요함.
 - ** LightGBM 학습/예측/평가.**
-  - boost_from_average가 True일 경우 레이블 값이 극도로 불균형 분포를 이루는 경우 재현률 및 ROC-AUC 성능이 매우 저하됨. LightGBM 2.1.0 이상 버전에서 이와 같은 현상 발생  
+  - boost_from_average가 True일 경우 레이블 값이 극도로 불균형 분포를 이루는 경우 재현률 및 ROC-AUC 성능이 매우 저하됨. LightGBM 2.1.0 이상 버전에서 이와 같은 현상 발생. 디폴트가 True.
   - Ex. `LGBMClassifier(n_estimators=1000, num_leaves=64, n_jobs=-1, boost_from_average=False)`
