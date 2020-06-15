@@ -21,3 +21,10 @@
 - sea_lb(해상 등표)
   - wd(풍향), ws(풍속), max_ins_wd(최대 순간 풍향), max_iws(최대 순간 풍속), ta(기온), ps(해면기압), hm(습도)
   - hive_manual 바탕으로 추정
+
+
+## LightGBM 성능 향상 idea
+- 재현율이 중요함.
+- ** LightGBM 학습/예측/평가.**
+  - boost_from_average가 True일 경우 레이블 값이 극도로 불균형 분포를 이루는 경우 재현률 및 ROC-AUC 성능이 매우 저하됨. LightGBM 2.1.0 이상 버전에서 이와 같은 현상 발생  
+  - Ex. `LGBMClassifier(n_estimators=1000, num_leaves=64, n_jobs=-1, boost_from_average=False)`
