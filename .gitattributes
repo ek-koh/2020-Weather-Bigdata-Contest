@@ -1,1 +1,8 @@
 *ASOS*.csv filter=lfs diff=lfs merge=lfs -text
+*zip filter=lfs diff=lfs merge=lfs -text
+ASOS_merge.csv filter=lfs diff=lfs merge=lfs -text
+new_plant filter=lfs diff=lfs merge=lfs -text
+new_plant.csv filter=lfs diff=lfs merge=lfs -text
+plant_weater_sea filter=lfs diff=lfs merge=lfs -text
+plant_weater_sea.csv filter=lfs diff=lfs merge=lfs -text
+plant_weather_sea.csv filter=lfs diff=lfs merge=lfs -text
