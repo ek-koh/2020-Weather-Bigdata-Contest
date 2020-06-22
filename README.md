@@ -1,6 +1,12 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Weather-Bigdata-Contest
+=======
+# 2020-Weather-Bigdata-Contest
+대용량 파일 문제로 2020-06-22부터 해당 repository 사용
+
+>>>>>>> 4c85d89d72e32691a708b77eb864374775cd1a0d
 =======
 # 2020-Weather-Bigdata-Contest
 대용량 파일 문제로 2020-06-22부터 해당 repository 사용
