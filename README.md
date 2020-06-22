@@ -4,18 +4,6 @@
 # 2020-Weather-Bigdata-Contest
 대용량 파일 문제로 2020-06-22부터 해당 repository 사용
 
-=======
-# 2020-Weather-Bigdata-Contest
-대용량 파일 문제로 2020-06-22부터 해당 repository 사용
-
-=======
-# 2020-Weather-Bigdata-Contest
-대용량 파일 문제로 2020-06-22부터 해당 repository 사용
-
-=======
-# 2020-Weather-Bigdata-Contest
-대용량 파일 문제로 2020-06-22부터 해당 repository 사용
-
 ## AWS 데이터 설명
 ### stn_id
 - 운평 AWS : 37.084530,126.773890 - stn_id==515
