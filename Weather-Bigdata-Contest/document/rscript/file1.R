@@ -185,30 +185,30 @@ write.csv(aws_ta, "aws_ta.csv", fileEncoding = "utf-8")
 
 
 
-#aws_te<- dbGetQuery(conn, "SELECT * FROM db_aws_te_tim
-#                        WHERE db_aws_te_tim.stn_id IN (515, 634, 637, 616)
-#                        AND db_aws_te_tim.tma > '2016-03-31 23:00:00.0'
-#                        AND db_aws_te_tim.tma < '2020-04-01 00:00:00.0'")
-#
-#colnames(aws_te)=gsub("db_aws_te_tim.", "", colnames(aws_te), ignore.case = T)
-#head(aws_te)
+aws_te <- dbGetQuery(conn, "SELECT * FROM db_aws_te_tim
+                        WHERE db_aws_te_tim.stn_id IN (515, 634, 637, 616)
+                        AND db_aws_te_tim.tma > '2016-03-31 23:00:00.0'
+                        AND db_aws_te_tim.tma < '2020-04-01 00:00:00.0'")
 
-#write.csv(aws_te, "aws_te.csv", fileEncoding = "utf-8")
+colnames(aws_te)=gsub("db_aws_te_tim.", "", colnames(aws_te), ignore.case = T)
+head(aws_te)
 
-
-
-#aws_ts<- dbGetQuery(conn, "SELECT * FROM db_aws_ts_tim
-#                        WHERE db_aws_ts_tim.stn_id IN (515, 634, 637, 616)
-#                        AND db_aws_ts_tim.tma > '2016-03-31 23:00:00.0'
-#                        AND db_aws_ts_tim.tma < '2020-04-01 00:00:00.0'")
-#
-#colnames(aws_ts)=gsub("db_aws_ts_tim.", "", colnames(aws_ts), ignore.case = T)
-#head(aws_ts)
-
-#write.csv(aws_ts, "aws_ts.csv", fileEncoding = "utf-8")
+write.csv(aws_te, "aws_te.csv", fileEncoding = "utf-8")
 
 
 
+aws_ts<- dbGetQuery(conn, "SELECT * FROM db_aws_ts_tim
+                        WHERE db_aws_ts_tim.stn_id IN (515, 634, 637, 616)
+                        AND db_aws_ts_tim.tma > '2016-03-31 23:00:00.0'
+                        AND db_aws_ts_tim.tma < '2020-04-01 00:00:00.0'")
+
+colnames(aws_ts)=gsub("db_aws_ts_tim.", "", colnames(aws_ts), ignore.case = T)
+head(aws_ts)
+
+write.csv(aws_ts, "aws_ts.csv", fileEncoding = "utf-8")
+
+
+# working code
 aws_wind <- dbGetQuery(conn, "SELECT * FROM db_aws_wind_tim
                         WHERE db_aws_wind_tim.stn_id IN (515, 634, 637, 616)
                         AND db_aws_wind_tim.tma > '2016-03-31 23:00:00.0'
@@ -220,3 +220,59 @@ head(aws_wind)
 write.csv(aws_wind, "aws_wind.csv", fileEncoding = "utf-8")
 
 
+#  Get data : sea_bouy
+
+## stn_id == 22101
+## 2100123100,1996070100,덕적도,37.2361,126.0188
+
+sea_buoy <- dbGetQuery(conn, "SELECT * FROM db_sea_buoy_tim
+                        WHERE db_sea_buoy_tim.stn_id==22101
+                        AND db_sea_buoy_tim.tm > '2016-03-31 23:00:00.0'
+                        AND db_sea_buoy_tim.tm < '2020-04-01 00:00:00.0'")
+
+colnames(sea_buoy)=gsub("db_sea_buoy_tim.", "", colnames(sea_buoy), ignore.case = T)
+head(sea_buoy)
+
+write.csv(sea_buoy, "sea_buoy.csv", fileEncoding = "utf-8")
+
+
+#  Get data : sea_lb
+## stn_id == 955
+## 2100123100,2001120100,서수도,37.325,126.3933333,18,12A20000,2872037000
+sea_lb <- dbGetQuery(conn, "SELECT * FROM db_sea_lb_tim
+                        WHERE db_sea_lb_tim.stn_id==955
+                        AND db_sea_lb_tim.tm > '2016-03-31 23:00:00.0'
+                        AND db_sea_lb_tim.tm < '2020-04-01 00:00:00.0'")
+
+colnames(sea_lb)=gsub("db_sea_lb_tim.", "", colnames(sea_lb), ignore.case = T)
+head(sea_lb)
+
+write.csv(sea_lb, "sea_lb.csv", fileEncoding = "utf-8")
+
+# Get data : fct_wid_dl
+## reg_id == 4427039000
+## 4427039000,충청남도,당진시,송산면,55,113,126.68 ,36.93
+View(list)
+fct_wid_dl <- dbGetQuery(conn, "SELECT fct_wid_dl.reg_id, fct_wid_dl.tm_fc, fct_wid_dl.wf_cd
+                            FROM fct_wid_dl
+                            WHERE fct_wid_dl.reg_id=='11C20101'
+                            AND fct_wid_dl.tm_fc > '2018-10-14 23:00:00.0'
+                            AND fct_wid_dl.tm_fc < '2020-04-01 00:00:00.0'")
+colnames(fct_wid_dl) = gsub("fct_wid_dl.", "", colnames(fct_wid_dl), ignore.case = T)
+tail(fct_wid_dl)
+
+write.csv(fct_wid_dl, "fct_wid_dl.csv", fileEncoding = "utf-8")
+
+# db_sfc_cloud_tim
+## 177,126.68766,36.65745,20,홍성(예),11C20104,4480031025
+cloud <- dbGetQuery(conn, "SELECT db_sfc_cloud_tim.tm, db_sfc_cloud_tim.stn_id, db_sfc_cloud_tim.ca
+                    FROM db_sfc_cloud_tim
+                    WHERE db_sfc_cloud_tim.stn_id==177
+                    AND db_sfc_cloud_tim.tm > '2016-03-31 23:00:00.0'
+                    AND db_sfc_cloud_tim.tm < '2020-04-01 00:00:00.0'")
+colnames(cloud) = gsub("db_sfc_cloud_tim.", "", colnames(cloud), ignore.case = T)
+head(cloud)
+tail(cloud)
+unique(cloud$stn_id)
+
+write.csv(cloud, "asos177_cloud.csv")
